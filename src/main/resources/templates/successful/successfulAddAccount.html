@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org" lang="en">
+<head>
+    <title>Реестр счетов клиента</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container my-2">
+
+    <p><h4>Запись успешно добавлена</h4>
+    <br/>
+    <p><a href="/" class="btn btn-primary btn-sm mb-3"> вернуться на главную страницу </a></p>
+    <p><a th:href="@{/customer/{id}/accounts(id=${customerId})}" class="btn btn-primary btn-sm mb-3"> вернуться на
+        предыдущую страницу </a></p>
+    <br/>
+</div>
+</body>
+</html>

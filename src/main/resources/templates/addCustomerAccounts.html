@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org" lang="en">
+<head>
+    <title>Реестр клиентов</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container my-2">
+    <p><h4>Форма добавления нового счета клиента</h4>
+    <br>
+    <h4><p th:text="Клиент + ' ' + ${customer.getFamily() + ' ' + customer.getName()}"></p></h4>
+
+    <form th:method="POST" th:action="@{/customer/{id}/account(id=${customer.id})}" th:object="${account}">
+        <p>
+            <label for="numberAccount">Введите новый номер счета клиента</label>
+            <input type="number" th:field="*{numberAccount}" id="numberAccount" min="0" placeholder="номер счета" required/>
+        </p>
+        <p>
+            <input type="submit" value="сохранить данные" class="btn btn-success btn-sm mb-3"/>
+    </form>
+</div>
+</body>
+</html>

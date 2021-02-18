@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org" lang="en">
+<head>
+    <title>Операции со счетом клиента</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container my-2">
+    <p><h3>Списание денежных средств со счета</h3>
+
+    <form th:method="POST"
+          th:action="@{/customer/{customerId}/writedown/{accountId}(accountId=${account.id}, customerId=${customerId})}">
+        <p>
+            <label for="summa">Введите сумму</label>
+            <input type="number" id="summa" name="summa" required min="0.00" max="${account.ballansAccount}"
+                   step="0.01"/>
+        </p>
+        <p>
+            <input type="submit" value="Выполнить операцию" class="btn btn-success btn-sm mb-3"/>
+            <a th:href="@{/customer/{customerId}/accounts(customerId=${customerId})}"
+               class="btn btn-primary btn-sm mb-3">Отменить операцию</a>
+        </p>
+    </form>
+</div>
+</body>
+</html>

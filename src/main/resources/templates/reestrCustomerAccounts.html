@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org" lang="en">
+<head>
+    <title>Реестр счетов клиента</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container my-2">
+    <p><h4>Реестр счетов клиента</h4>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>ID Клиента</th>
+            <th>Балланс</th>
+            <th>Номер счета</th>
+            <th>Операции со счетом клиента</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="account : ${accountList}">
+            <td th:text="${account.id}"></td>
+            <td th:text="${account.customerId}"></td>
+            <td th:text="${account.ballansAccount}"></td>
+            <td th:text="${account.numberAccount}"></td>
+            <td>
+                <select onchange="window.location.href=message + this.options[this.selectedIndex].text + this.options[this.selectedIndex].value "
+                        name="operations">
+                    <option></option>
+                    <option th:value="${account.id}" label="Внести на счет">/deposit/</option>
+                    <option th:value="${account.id}" label="Перевести на другой счет">/transfer/</option>
+                    <option th:value="${account.id}" label="Списать со счета">/writedown/</option>
+                </select>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <p><a th:href="@{/customers}" class="btn btn-primary btn-sm mb-3"> вернуться на предыдущую страницу </a></p>
+
+    <p><a th:href="@{/customer/{id}/account(id=${customer.id})}" class="btn btn-primary btn-sm mb-3">добавить новый счет
+        клиенту</a></p>
+</div>
+</body>
+<script th:inline="javascript">
+    var message = '/customer/[[${customer.id}]]';
+</script>
+
+</html>
+
